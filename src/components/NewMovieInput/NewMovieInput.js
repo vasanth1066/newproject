@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const NewMovieInput = () => {
+const NewMovieInput = (props) => {
   const [title, setTitle] = useState("");
   const [openingtext, setOpeningtext] = useState("");
   const [releasedate, setReleasedate] = useState("");
@@ -11,10 +11,11 @@ const NewMovieInput = () => {
       openingtext,
       releasedate,
     };
-    console.log("items", item);
+
     setTitle("");
     setOpeningtext("");
     setReleasedate("");
+    props.onAddMovie(item);
   }
 
   return (

@@ -18,3 +18,12 @@
     margin: 0;
     font-size: 1rem;
   }
+  .button{
+  
+    background:red;
+  }
+  button:hover,
+button:active {
+  background-color: #dd340a;
+  border-color: #030105;
+}

@@ -16,19 +16,21 @@ function App() {
     setIsloading(true);
     setError(null);
     try {
-      const response = await fetch("https://swapi.dev/api/films/");
+      const response = await fetch(
+        "https://crudcrud.com/api/26aecbddda864fdfaa68afe82b0a629d/add"
+      );
       if (!response.ok) {
         throw new Error("Something went wrong ....Retrying");
       }
 
       const data = await response.json();
 
-      const transformedMovies = data.results.map((movieData) => {
+      const transformedMovies = data.map((movieData) => {
         return {
-          id: movieData.episode_id,
+          id: movieData._id,
           title: movieData.title,
-          openingText: movieData.opening_crawl,
-          releaseDate: movieData.release_date,
+          openingText: movieData.openingtext,
+          releaseDate: movieData.releasedate,
         };
       });
       setMovies(transformedMovies);
@@ -52,11 +54,25 @@ function App() {
   if (error) {
     content = <p>{error}</p>;
   }
+  async function addMovieHandler(movie) {
+    const response = await fetch(
+      "https://crudcrud.com/api/26aecbddda864fdfaa68afe82b0a629d/add",
+      {
+        method: "POST",
+        body: JSON.stringify(movie),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <React.Fragment>
       <section>
-        <NewMovieInput></NewMovieInput>
+        <NewMovieInput onAddMovie={addMovieHandler}></NewMovieInput>
       </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>

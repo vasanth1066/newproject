@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import MovieList from "./components/MovieList";
+import NewMovieInput from "./components/NewMovieInput/NewMovieInput";
 import "./App.css";
 
 function App() {
@@ -54,6 +55,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <section>
+        <NewMovieInput></NewMovieInput>
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
 
